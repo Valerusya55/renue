@@ -17,8 +17,8 @@ public class Main {
             count = 0;
             System.out.println("Введите строку для поиска:");
             data = in.nextLine();
-            long m = System.currentTimeMillis();
             try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/src/airports.csv"))) {
+                long m = System.currentTimeMillis();
                 while ((line = reader.readLine()) != null) {
                     String[] cols = line.split(",");
                     searchLine = cols[Integer.parseInt(args[0].trim()) - 1].replaceAll("^\"|\"$", "");
@@ -31,7 +31,7 @@ public class Main {
                     System.out.println(pair.getKey() + "[" + pair.getValue() + "]");
                 }
                 System.out.println("Строк:" + count);
-                System.out.println("Время поиска:" + (double) (System.currentTimeMillis() - m));
+                System.out.println("Время поиска:" + (double) (System.currentTimeMillis() - m) + " мс");
             } catch (ArrayIndexOutOfBoundsException | FileNotFoundException | NumberFormatException e) {
                 if (e.getClass() == ArrayIndexOutOfBoundsException.class || e.getClass() == NumberFormatException.class) {
                     System.out.println("Не правильно задан параметр");
